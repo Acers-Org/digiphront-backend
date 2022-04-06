@@ -3,20 +3,39 @@ import dotenv from "dotenv";
 dotenv.config();
 // Connection to DB
 import connectDB from "./config/db/connect.js";
+import morgan from "morgan";
+import cors from "cors";
 
 const app = express();
 
-// middlewares
+// import middlewares
 import notFound from "./middlewares/not-found.js";
 import errorHandlerMiddleware from "./middlewares/error-handler.js";
+
+// import routes
+import homeRoutes from "./routes/api-home.js";
+import userRoutes from "./routes/users.js";
+
+// ADDING CORS MIDDLEWARE
+const allowlist = ["http://localhost:3000"];
+
+function corsOptionsDelegate(req, callback) {
+  let corsOptions = {
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    credentials: true,
+  };
+  let requestOrigin = req.header("Origin");
+  if (allowlist.indexOf(requestOrigin) !== -1)
+    corsOptions = { ...corsOptions, origin: requestOrigin };
+  callback(null, corsOptions);
+}
+app.use(cors(corsOptionsDelegate));
+app.use(morgan("tiny"));
 
 app.use(express.static("./public"));
 app.use(express.json());
 
 // routes
-import homeRoutes from "./routes/api-home.js";
-import userRoutes from "./routes/users.js";
-
 app.use("/", homeRoutes);
 app.use("/users", userRoutes);
 
