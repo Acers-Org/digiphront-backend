@@ -36,8 +36,9 @@ app.use(express.static("./public"));
 app.use(express.json());
 
 // routes
+const apiPath = "/api";
 app.use("/", homeRoutes);
-app.use("/users", userRoutes);
+app.use(apiPath + "/users", userRoutes);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
