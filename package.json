@@ -1,0 +1,31 @@
+{
+  "name": "educlan-backend",
+  "version": "1.0.0",
+  "description": "This repository serves as the backend for EDUCLAN- an edutech solution that allows schools to provided learning services to students and manage their data.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Acers-Org/educlan-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Acers-Org/educlan-backend/issues"
+  },
+  "homepage": "https://github.com/Acers-Org/educlan-backend#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
