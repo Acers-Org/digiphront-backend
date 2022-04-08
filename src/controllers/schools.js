@@ -61,7 +61,7 @@ export const deleteSchool = asyncWrapper(async (req, res) => {
     return next(createCustomError(`No school with id: ${schoolId}`, 404));
   }
   res.status(200).json({
-    message: "Schools deleted",
+    message: "School deleted",
     data: school,
     success: 1,
   });
