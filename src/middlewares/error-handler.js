@@ -1,4 +1,5 @@
 import { CustomAPIError } from "../utils/custom-error.js";
+
 const errorHandlerMiddleware = (err, req, res, next) => {
   if (err instanceof CustomAPIError) {
     return res.status(err.statusCode).json({
@@ -6,6 +7,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
       success: 0,
     });
   }
+  console.log(err);
   return res
     .status(500)
     .json({ message: "Something went wrong, please try again", success: 0 });

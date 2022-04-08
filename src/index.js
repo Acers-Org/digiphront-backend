@@ -15,6 +15,7 @@ import errorHandlerMiddleware from "./middlewares/error-handler.js";
 // import routes
 import homeRoutes from "./routes/api-home.js";
 import userRoutes from "./routes/users.js";
+import schoolRoutes from "./routes/schools.js";
 
 // ADDING CORS MIDDLEWARE
 const allowlist = ["http://localhost:3000"];
@@ -37,8 +38,9 @@ app.use(express.json());
 
 // routes
 const apiPath = "/api";
-app.use("/", homeRoutes);
+app.use(apiPath + "/", homeRoutes);
 app.use(apiPath + "/users", userRoutes);
+app.use(apiPath + "/schools", schoolRoutes);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
