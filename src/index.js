@@ -3,22 +3,44 @@ import dotenv from "dotenv";
 dotenv.config();
 // Connection to DB
 import connectDB from "./config/db/connect.js";
+import morgan from "morgan";
+import cors from "cors";
 
 const app = express();
 
-// middlewares
+// import middlewares
 import notFound from "./middlewares/not-found.js";
 import errorHandlerMiddleware from "./middlewares/error-handler.js";
+
+// import routes
+import homeRoutes from "./routes/api-home.js";
+import userRoutes from "./routes/users.js";
+import schoolRoutes from "./routes/schools.js";
+
+// ADDING CORS MIDDLEWARE
+const allowlist = ["http://localhost:3000"];
+
+function corsOptionsDelegate(req, callback) {
+  let corsOptions = {
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    credentials: true,
+  };
+  let requestOrigin = req.header("Origin");
+  if (allowlist.indexOf(requestOrigin) !== -1)
+    corsOptions = { ...corsOptions, origin: requestOrigin };
+  callback(null, corsOptions);
+}
+app.use(cors(corsOptionsDelegate));
+app.use(morgan("tiny"));
 
 app.use(express.static("./public"));
 app.use(express.json());
 
 // routes
-import homeRoutes from "./routes/api-home.js";
-import userRoutes from "./routes/users.js";
-
-app.use("/", homeRoutes);
-app.use("/users", userRoutes);
+const apiPath = "/api";
+app.use(apiPath + "/", homeRoutes);
+app.use(apiPath + "/users", userRoutes);
+app.use(apiPath + "/schools", schoolRoutes);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
@@ -35,11 +57,10 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-const HOSTNAME =
-  process.env.NODE_ENV === "production" ? process.env.HOST : "127.0.0.1";
-const PORT = process.env.PORT || 5000;
+const HOSTNAME = process.env.HOST;
+const PORT = process.env.PORT;
 const MONGO_URI =
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV !== "production"
     ? process.env.DEV_DB_URL
     : process.env.PROD_DB_URL;
 
