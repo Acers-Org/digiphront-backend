@@ -95,8 +95,6 @@ POST /schools
 Accept: application/json
 Content-Type: application/json
 {
-"message":"School Created",
-"data":{
       "school_name": "Test University",
       "category":"university",
       "address": {
@@ -111,13 +109,10 @@ Content-Type: application/json
     "email": ""
   }
 }
-  "success": 1
-}
 ```
 
 #### Get Schools
 
-**You send:** ``
 **You get:** All schools.
 
 **Request:**
@@ -126,62 +121,12 @@ Content-Type: application/json
 GET /schools
 Accept: application/json
 Content-Type: application/json
-{
-"message":"All schools",
-"data":[
-  {
-      "school_name": "Test University",
-      "category":"university",
-      "address": {
-          "lines": ["No 10", "Welfare quarters"],
-          "postcode":"",
-          "city": "Makurdi",
-          "state": "Benue",
-         "country": "Nigeria"
-  },
-  "contact": {
-    "phone": "",
-    "email": ""
-  }
-}
-],
-"success": 1
-}
-```
 
-#### Single School
-
-**Request:**
-
-```json
-GET /schools/1234567890
-Accept: application/json
-Content-Type: application/json
-{
-"message":"school details",
-"data":{
-      "school_name": "Test University",
-      "category":"university",
-      "address": {
-          "lines": ["No 10", "Welfare quarters"],
-          "postcode":"",
-          "city": "Makurdi",
-          "state": "Benue",
-         "country": "Nigeria"
-  },
-  "contact": {
-    "phone": "",
-    "email": ""
-  },
-},
-  "success": 1
-}
 ```
 
 #### Update Schools
 
-**You send:** ``
-**You get:** All schools.
+**You get:** The school updated.
 
 **Request:**
 
@@ -190,19 +135,15 @@ PATCH /schools/1234567890
 Accept: application/json
 Content-Type: application/json
 {
-"message":"School update",
-"data":
-  {
-      "school_name": "Test University",
-      "address": {
-          "lines": ["No 10", "Welfare quarters"],
-          "postcode":"",
-          "city": "Makurdi",
-          "state": "Benue",
-         "country": "Nigeria"
-      }
-  },
-"success": 1
+  "school_name": "Test University",
+  "category":"university",
+  "address": {
+      "lines": ["No 10", "Welfare quarters"],
+      "postcode":"",
+      "city": "Makurdi",
+      "state": "Benue",
+      "country": "Nigeria"
+  }
 }
 ```
 
@@ -214,25 +155,7 @@ Content-Type: application/json
 DELETE /schools/1234567890
 Accept: application/json
 Content-Type: application/json
-{
-"message":"School Dleted",
-"data":{
-      "school_name": "Test University",
-      "category":"university",
-      "address": {
-          "lines": ["No 10", "Welfare quarters"],
-          "postcode":"",
-          "city": "Makurdi",
-          "state": "Benue",
-         "country": "Nigeria"
-  },
-  "contact": {
-    "phone": "",
-    "email": ""
-  },
-},
-  "success": 1
-}
+
 ```
 
 ## Information for programmers
