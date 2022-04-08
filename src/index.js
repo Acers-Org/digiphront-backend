@@ -57,11 +57,10 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-const HOSTNAME =
-  process.env.NODE_ENV === "production" ? process.env.HOST : "127.0.0.1";
-const PORT = process.env.PORT || 5000;
+const HOSTNAME = process.env.HOST;
+const PORT = process.env.PORT;
 const MONGO_URI =
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV !== "production"
     ? process.env.DEV_DB_URL
     : process.env.PROD_DB_URL;
 

@@ -1,55 +1,68 @@
 import School from "../models/School.js";
+import asyncWrapper from "../middlewares/async.js";
+import { createCustomError } from "../utils/custom-error.js";
 
-export const getSchools = (req, res) => {
-  let schools = [];
-  console.log(`All schools in the database`);
-
+export const getSchools = asyncWrapper(async (req, res) => {
+  const schools = await School.find({});
   res.status(200).json({
     message: "All schools",
     data: schools,
     success: 1,
   });
-};
+});
 
-export const createSchool = async (req, res) => {
+export const createSchool = asyncWrapper(async (req, res) => {
   const school = await School.create(req.body);
+  if (!school) {
+    return next(createCustomError("Unable to create school", 422));
+  }
   res.status(201).json({
     message: "School created",
     data: school,
     success: 1,
   });
-};
+});
 
-export const getSchool = (req, res) => {
-  let school = {};
-  let schoolId = req.params.id;
+export const getSchool = asyncWrapper(async (req, res) => {
+  const schoolId = req.params.id;
+  const school = await School.findOne({ _id: schoolId });
+  if (!school) {
+    return next(createCustomError(`No school with id: ${schoolId}`, 404));
+  }
   res.status(200).json({
-    message: "Schools details",
+    message: "School details",
     data: school,
     success: 1,
   });
-};
+});
 
-export const updateSchool = (req, res) => {
-  const schools = [];
-  const school = schools.find((school) => school.id === req.params.id);
+export const updateSchool = asyncWrapper(async (req, res) => {
+  const schoolId = req.params.id;
 
-  //school.schoolname = req.body.schoolname;
+  const school = await School.findOneAndUpdate({ _id: schoolId }, req.body, {
+    new: true,
+    runValidators: true,
+  });
 
-  console.log(`schoolname has been updated to ${req.body.schoolname}.`);
+  if (!school) {
+    return next(createCustomError(`No school with id : ${taskID}`, 404));
+  }
   res.status(200).json({
-    message: "Schools details",
+    message: "School updated",
     data: school,
     success: 1,
   });
-};
+});
 
-export const deleteSchool = (req, res) => {
-  console.log(`School with id ${req.params.id} has been deleted`);
-
-  //schools = schools.filter((school) => school.id !== req.params.id);
-  res.status(200).send({
-    message: "School deleted",
+export const deleteSchool = asyncWrapper(async (req, res) => {
+  const schoolId = req.params.id;
+  const school = await School.findOne({ _id: schoolId });
+  if (!school) {
+    return next(createCustomError(`No school with id: ${schoolId}`, 404));
+  }
+  res.status(200).json({
+    message: "Schools deleted",
+    data: school,
     success: 1,
   });
-};
+});
