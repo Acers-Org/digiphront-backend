@@ -15,6 +15,7 @@ import errorHandlerMiddleware from "./middlewares/error-handler.js";
 // import routes
 import homeRoutes from "./routes/api-home.js";
 import userRoutes from "./routes/users.js";
+import schoolRoutes from "./routes/schools.js";
 
 // ADDING CORS MIDDLEWARE
 const allowlist = ["http://localhost:3000"];
@@ -36,8 +37,10 @@ app.use(express.static("./public"));
 app.use(express.json());
 
 // routes
-app.use("/", homeRoutes);
-app.use("/users", userRoutes);
+const apiPath = "/api";
+app.use(apiPath + "/", homeRoutes);
+app.use(apiPath + "/users", userRoutes);
+app.use(apiPath + "/schools", schoolRoutes);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
@@ -54,11 +57,10 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-const HOSTNAME =
-  process.env.NODE_ENV === "production" ? process.env.HOST : "127.0.0.1";
-const PORT = process.env.PORT || 5000;
+const HOSTNAME = process.env.HOST;
+const PORT = process.env.PORT;
 const MONGO_URI =
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV !== "production"
     ? process.env.DEV_DB_URL
     : process.env.PROD_DB_URL;
 

@@ -77,7 +77,163 @@ http code 404
 
 ### Requests
 
-In requests that require a body, a valid JSON must be provided. To make it easier to locate available requests endpoints and how to use them, they are listed and described here.
+In requests that require a body, a valid JSON must be provided. To make it easier to locate available requests endpoints and how to use them, they are listed and described here. The api based path is given below:
+
+- [School Requests](#school-requests)
+
+#### School Requests
+
+#### Create School
+
+**You send:** Details to create a school.
+**You get:** The newly created school.
+
+**Request:**
+
+```json
+POST /schools
+Accept: application/json
+Content-Type: application/json
+{
+"message":"School Created",
+"data":{
+      "school_name": "Test University",
+      "category":"university",
+      "address": {
+          "lines": ["No 10", "Welfare quarters"],
+          "postcode":"",
+          "city": "Makurdi",
+          "state": "Benue",
+         "country": "Nigeria"
+  },
+  "contact": {
+    "phone": "",
+    "email": ""
+  }
+}
+  "success": 1
+}
+```
+
+#### Get Schools
+
+**You send:** ``
+**You get:** All schools.
+
+**Request:**
+
+```json
+GET /schools
+Accept: application/json
+Content-Type: application/json
+{
+"message":"All schools",
+"data":[
+  {
+      "school_name": "Test University",
+      "category":"university",
+      "address": {
+          "lines": ["No 10", "Welfare quarters"],
+          "postcode":"",
+          "city": "Makurdi",
+          "state": "Benue",
+         "country": "Nigeria"
+  },
+  "contact": {
+    "phone": "",
+    "email": ""
+  }
+}
+],
+"success": 1
+}
+```
+
+#### Single School
+
+**Request:**
+
+```json
+GET /schools/1234567890
+Accept: application/json
+Content-Type: application/json
+{
+"message":"school details",
+"data":{
+      "school_name": "Test University",
+      "category":"university",
+      "address": {
+          "lines": ["No 10", "Welfare quarters"],
+          "postcode":"",
+          "city": "Makurdi",
+          "state": "Benue",
+         "country": "Nigeria"
+  },
+  "contact": {
+    "phone": "",
+    "email": ""
+  },
+},
+  "success": 1
+}
+```
+
+#### Update Schools
+
+**You send:** ``
+**You get:** All schools.
+
+**Request:**
+
+```json
+PATCH /schools/1234567890
+Accept: application/json
+Content-Type: application/json
+{
+"message":"School update",
+"data":
+  {
+      "school_name": "Test University",
+      "address": {
+          "lines": ["No 10", "Welfare quarters"],
+          "postcode":"",
+          "city": "Makurdi",
+          "state": "Benue",
+         "country": "Nigeria"
+      }
+  },
+"success": 1
+}
+```
+
+#### Delete School
+
+**Request:**
+
+```json
+DELETE /schools/1234567890
+Accept: application/json
+Content-Type: application/json
+{
+"message":"School Dleted",
+"data":{
+      "school_name": "Test University",
+      "category":"university",
+      "address": {
+          "lines": ["No 10", "Welfare quarters"],
+          "postcode":"",
+          "city": "Makurdi",
+          "state": "Benue",
+         "country": "Nigeria"
+  },
+  "contact": {
+    "phone": "",
+    "email": ""
+  },
+},
+  "success": 1
+}
+```
 
 ## Information for programmers
 
