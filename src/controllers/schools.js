@@ -45,7 +45,7 @@ export const updateSchool = asyncWrapper(async (req, res) => {
   });
 
   if (!school) {
-    return next(createCustomError(`No school with id : ${taskID}`, 404));
+    return next(createCustomError(`No school with id : ${schoolId}`, 404));
   }
   res.status(200).json({
     message: "School updated",

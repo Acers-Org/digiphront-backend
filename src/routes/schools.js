@@ -9,10 +9,12 @@ import {
   deleteSchool,
 } from "../controllers/schools.js";
 
-router.get("/", getSchools);
+import authMiddleware from "../middlewares/auth.js";
+
+router.get("/", authMiddleware, getSchools);
 router.post("/", createSchool);
-router.get("/:id", getSchool);
-router.patch("/:id", updateSchool);
-router.delete("/:id", deleteSchool);
+router.get("/:id", authMiddleware, getSchool);
+router.patch("/:id", authMiddleware, updateSchool);
+router.delete("/:id", authMiddleware, deleteSchool);
 
 export default router;

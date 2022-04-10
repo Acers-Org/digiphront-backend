@@ -3,21 +3,28 @@ import bcrypt from "bcrypt";
 
 const UserSchema = new mongoose.Schema(
   {
-    firstName: {
+    firstname: {
       type: String,
       required: true,
       trim: true,
       minLength: 2,
     },
-    lastName: {
+    lastname: {
       type: String,
       required: true,
       trim: true,
       minLength: 2,
     },
-    otherNames: String,
+    othernames: String,
     email: {
       type: String,
+      validate: {
+        validator: function (email) {
+          const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+          return emailRegex.test(email);
+        },
+        message: "A valid email is required",
+      },
       required: true,
       lowercase: true,
       trim: true,
@@ -50,7 +57,6 @@ const UserSchema = new mongoose.Schema(
     admin: {
       job_title: {
         type: String,
-        required: [true, "must provide job title"],
         trim: true,
         lowercase: true,
         minlength: [
@@ -66,7 +72,6 @@ const UserSchema = new mongoose.Schema(
       },
       job_title: {
         type: String,
-        required: [true, "must provide job title"],
         trim: true,
         lowercase: true,
         minlength: [
