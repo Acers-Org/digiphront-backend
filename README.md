@@ -80,13 +80,11 @@ http code 404
 In requests that require a body, a valid JSON must be provided. To make it easier to locate available requests endpoints and how to use them, they are listed and described here. The api based path is given below:
 
 - [School Requests](#school-requests)
+- [User Requests](#user-requests)
 
 #### School Requests
 
-#### Create School
-
-**You send:** Details to create a school.
-**You get:** The newly created school.
+##### Create School
 
 **Request:**
 
@@ -94,6 +92,7 @@ In requests that require a body, a valid JSON must be provided. To make it easie
 POST /schools
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer <token>
 {
       "school_name": "Test University",
       "category":"university",
@@ -111,9 +110,7 @@ Content-Type: application/json
 }
 ```
 
-#### Get Schools
-
-**You get:** All schools.
+##### Get Schools
 
 **Request:**
 
@@ -121,12 +118,10 @@ Content-Type: application/json
 GET /schools
 Accept: application/json
 Content-Type: application/json
-
+Authorization: Bearer <token>
 ```
 
-#### Update Schools
-
-**You get:** The school updated.
+##### Update Schools
 
 **Request:**
 
@@ -134,6 +129,7 @@ Content-Type: application/json
 PATCH /schools/1234567890
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer <token>
 {
   "school_name": "Test University",
   "category":"university",
@@ -147,7 +143,7 @@ Content-Type: application/json
 }
 ```
 
-#### Delete School
+##### Delete School
 
 **Request:**
 
@@ -155,7 +151,89 @@ Content-Type: application/json
 DELETE /schools/1234567890
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer <token>
+```
 
+#### User Requests
+
+##### Register User
+
+During registration a default password is assigned.
+
+**Request:**
+
+```json
+POST /register
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer <Token>
+{
+
+  "firstname": "John",
+  "lastname": "Doe",
+  "email": "***",
+}
+```
+
+##### Login
+
+**Request:**
+
+```json
+POST /login
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer <token>
+{
+  "email": "***",
+  "password": "***"
+}
+```
+
+##### Get Users
+
+**Request:**
+
+```json
+GET /users
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer <token>
+```
+
+##### Single User
+
+**Request:**
+
+```json
+GET /users/12345****
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer <token>
+```
+
+##### Update User
+
+**Request:**
+
+```json
+PATCH /users/12345***
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer <token>
+{
+}
+```
+
+#### Delete School
+
+**Request:**
+
+```json
+DELETE /user/12345***
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer <token>
 ```
 
 ## Information for programmers
