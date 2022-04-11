@@ -3,7 +3,7 @@ import asyncWrapper from "../middlewares/async.js";
 import { createCustomError } from "../utils/custom-error.js";
 
 export const getUsers = asyncWrapper(async (req, res) => {
-  const users = await User.find({});
+  const users = await User.find({}).populate("school");
   res.status(200).json({
     message: "Users",
     data: users,
@@ -27,6 +27,7 @@ export const getUser = asyncWrapper(async (req, res) => {
 export const updateUser = asyncWrapper(async (req, res) => {
   const userId = req.params.id;
   const user = await User.findOneAndUpdate({ _id: userId }, req.body, {
+    new: true,
     runValidators: true,
   });
 
