@@ -54,6 +54,11 @@ const UserSchema = new mongoose.Schema(
       type: mongoose.SchemaTypes.ObjectId,
       ref: "School",
     },
+    isSa: {
+      type: Boolean,
+      select: false,
+      default: false,
+    },
     admin: {
       job_title: {
         type: String,
