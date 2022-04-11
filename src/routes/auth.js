@@ -5,7 +5,7 @@ import { register, login } from "../controllers/auth.js";
 
 import authMiddleware from "../middlewares/auth.js";
 
-router.post("/register", register);
+router.post("/register", authMiddleware, register);
 router.post("/login", login);
 
 export default router;

@@ -172,6 +172,10 @@ Authorization: Bearer <Token>
   "firstname": "John",
   "lastname": "Doe",
   "email": "***",
+  "school": "***",
+  "teacher": {
+    "job_title": "lecturer 1"
+  }
 }
 ```
 
@@ -222,12 +226,18 @@ Accept: application/json
 Content-Type: application/json
 Authorization: Bearer <token>
 {
+    "firstname": "John",
+    "lastname": "Doe",
+    "avatar": "url_String",
+    "phone": "+23410000000000",
+    "gender": "male",
+    "dob": "01/10/1960"
 }
 ```
 
 #### Delete School
 
-**Request:**
+**Request: currently disabled**
 
 ```json
 DELETE /user/12345***
