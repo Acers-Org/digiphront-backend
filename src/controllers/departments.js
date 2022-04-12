@@ -3,16 +3,12 @@ import asyncWrapper from "../middlewares/async.js";
 import { createCustomError } from "../utils/custom-error.js";
 import User from "../models/User.js";
 
-const school = asyncWrapper(async (req, res) => {
+export const getDepartments = asyncWrapper(async (req, res) => {
   const user = await User.findOne({ _id: req.user.id }).select("school");
   if (!user) {
     throw createCustomError(`Bad request received`, 400);
   }
-  return user.school;
-});
-
-export const getDepartments = asyncWrapper(async (req, res) => {
-  const schoolId = await school(req, res);
+  const schoolId = user.school;
   const depts = await Department.find({ school: schoolId }).populate("school");
   res.status(200).json({
     message: "School Department",
@@ -22,7 +18,11 @@ export const getDepartments = asyncWrapper(async (req, res) => {
 });
 
 export const createDepartment = asyncWrapper(async (req, res) => {
-  const schoolId = await school(req, res);
+  const user = await User.findOne({ _id: req.user.id }).select("school");
+  if (!user) {
+    throw createCustomError(`Bad request received`, 400);
+  }
+  const schoolId = user.school;
   const { department_name } = req.body;
   const dept = await Department.create({ department_name, school: schoolId });
   if (!dept) {
