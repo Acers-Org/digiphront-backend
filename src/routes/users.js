@@ -6,6 +6,11 @@ import {
   getUser,
   updateUser,
   deleteUser,
+  schoolGetUsers,
+  schoolGetUser,
+  schoolUpdateUser,
+  getProfile,
+  updateProfile,
 } from "../controllers/users.js";
 
 import authMiddleware, {
@@ -20,10 +25,27 @@ router.patch("/:id", authMiddleware, saAuthMiddleware, updateUser);
 //router.delete("/:id", authMiddleware, deleteUser);
 
 // school level routes
-router.get("/school", authMiddleware, teacherAuthMiddleware, getUsers);
-router.get("/school/:id", authMiddleware, teacherAuthMiddleware, getUser);
-router.patch("/school/:id", authMiddleware, adminAuthMiddleware, updateUser);
+router.get(
+  "/school/users/",
+  authMiddleware,
+  teacherAuthMiddleware,
+  schoolGetUsers
+);
+router.get(
+  "/school/users/:id",
+  authMiddleware,
+  teacherAuthMiddleware,
+  schoolGetUser
+);
+router.patch(
+  "/school/users/:id",
+  authMiddleware,
+  adminAuthMiddleware,
+  schoolUpdateUser
+);
 
 // logged in user route
+router.get("/user/profile", authMiddleware, getProfile);
+router.patch("/user/profile", authMiddleware, updateProfile);
 
 export default router;
