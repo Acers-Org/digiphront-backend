@@ -34,7 +34,7 @@ function corsOptionsDelegate(req, callback) {
     corsOptions = { ...corsOptions, origin: requestOrigin };
   callback(null, corsOptions);
 }
-app.use(cors(corsOptionsDelegate));
+app.use(cors());
 app.use(morgan("tiny"));
 
 app.use(express.static("./public"));
