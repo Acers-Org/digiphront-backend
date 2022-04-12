@@ -14,6 +14,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
 
     return errorResponse(res, 400, msg);
   }
+  console.log(err);
   return errorResponse(res, 500, "Something went wrong, please try again");
 };
 

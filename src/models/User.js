@@ -60,6 +60,10 @@ const UserSchema = new mongoose.Schema(
       default: false,
     },
     admin: {
+      isAdmin: {
+        type: Boolean,
+        default: false,
+      },
       job_title: {
         type: String,
         trim: true,
@@ -71,6 +75,10 @@ const UserSchema = new mongoose.Schema(
       },
     },
     teacher: {
+      isTeacher: {
+        type: Boolean,
+        default: false,
+      },
       department: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "Department",
@@ -87,6 +95,10 @@ const UserSchema = new mongoose.Schema(
       courses: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Courses" }],
     },
     student: {
+      isStudent: {
+        type: Boolean,
+        default: false,
+      },
       course_of_study: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "Course_of_study",
