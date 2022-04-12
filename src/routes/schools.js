@@ -7,14 +7,33 @@ import {
   getSchool,
   updateSchool,
   deleteSchool,
+  adminGetSchool,
+  adminUpdateSchool,
 } from "../controllers/schools.js";
 
-import authMiddleware from "../middlewares/auth.js";
+import authMiddleware, {
+  saAuthMiddleware,
+  adminAuthMiddleware,
+} from "../middlewares/auth.js";
 
-router.get("/", authMiddleware, getSchools);
+router.get("/", authMiddleware, saAuthMiddleware, getSchools);
 router.post("/", createSchool);
-router.get("/:id", authMiddleware, getSchool);
-router.patch("/:id", authMiddleware, updateSchool);
-router.delete("/:id", authMiddleware, deleteSchool);
+router.get("/:id", authMiddleware, saAuthMiddleware, getSchool);
+router.patch("/:id", authMiddleware, saAuthMiddleware, updateSchool);
+router.delete("/:id", authMiddleware, saAuthMiddleware, deleteSchool);
+
+// school admin route
+router.get(
+  "/admin-school/:id",
+  authMiddleware,
+  adminAuthMiddleware,
+  adminGetSchool
+);
+router.patch(
+  "/admin-school/:id",
+  authMiddleware,
+  adminAuthMiddleware,
+  adminUpdateSchool
+);
 
 export default router;
