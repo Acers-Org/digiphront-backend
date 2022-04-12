@@ -15,7 +15,7 @@ export const getSchools = asyncWrapper(async (req, res) => {
 export const createSchool = asyncWrapper(async (req, res) => {
   const school = await School.create(req.body);
   if (!school) {
-    return next(createCustomError("Unable to create school", 422));
+    throw createCustomError("Unable to create school", 422);
   }
   res.status(201).json({
     message: "School created",
@@ -28,7 +28,7 @@ export const getSchool = asyncWrapper(async (req, res) => {
   const schoolId = req.params.id;
   const school = await School.findOne({ _id: schoolId });
   if (!school) {
-    return next(createCustomError(`No school with id: ${schoolId}`, 404));
+    throw createCustomError(`No school with id: ${schoolId}`, 404);
   }
   res.status(200).json({
     message: "School details",
@@ -46,7 +46,7 @@ export const updateSchool = asyncWrapper(async (req, res) => {
   });
 
   if (!school) {
-    return next(createCustomError(`No school with id : ${schoolId}`, 404));
+    throw createCustomError(`No school with id : ${schoolId}`, 404);
   }
   res.status(200).json({
     message: "School updated",
@@ -59,7 +59,7 @@ export const deleteSchool = asyncWrapper(async (req, res) => {
   const schoolId = req.params.id;
   const school = await School.findOneAndDelete({ _id: schoolId });
   if (!school) {
-    return next(createCustomError(`No school with id: ${schoolId}`, 404));
+    throw createCustomError(`No school with id: ${schoolId}`, 404);
   }
   res.status(200).json({
     message: "School deleted",
@@ -97,7 +97,7 @@ export const adminUpdateSchool = asyncWrapper(async (req, res) => {
     runValidators: true,
   });
   if (!school) {
-    return next(createCustomError(`School not found`, 404));
+    throw createCustomError(`School not found`, 404);
   }
   res.status(200).json({
     message: "School updated",
