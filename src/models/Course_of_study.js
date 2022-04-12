@@ -3,13 +3,15 @@ import mongoose from "mongoose";
 const COSSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, "must provide name"],
+    required: [true, "must provide cos name"],
     trim: true,
     minlength: [5, "Name must be 5 or more characters"],
   },
-  duration: {
-    start_date: Date,
-    end_date: Date,
+  status: {
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   department: {
     type: mongoose.SchemaTypes.ObjectId,

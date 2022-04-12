@@ -18,6 +18,8 @@ import userRoutes from "./routes/users.js";
 import authRoutes from "./routes/auth.js";
 import schoolRoutes from "./routes/schools.js";
 import msgRoutes from "./routes/messages.js";
+import deptRoutes from "./routes/departments.js";
+import cosRoutes from "./routes/course-of-study.js";
 
 // ADDING CORS MIDDLEWARE
 const allowlist = ["http://localhost:3000"];
@@ -45,6 +47,8 @@ app.use(apiPath + "/", authRoutes);
 app.use(apiPath + "/users", userRoutes);
 app.use(apiPath + "/schools", schoolRoutes);
 app.use(apiPath + "/messages", msgRoutes);
+app.use(apiPath + "/department", deptRoutes);
+app.use(apiPath + "/course-of-study", cosRoutes);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);

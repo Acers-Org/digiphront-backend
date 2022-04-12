@@ -103,26 +103,33 @@ const UserSchema = new mongoose.Schema(
         type: mongoose.SchemaTypes.ObjectId,
         ref: "Course_of_study",
       },
-      study_status: {
-        level: {
-          type: String,
-          trim: true,
-          lowercase: true,
-          minlength: [1, "A student must have a level"],
+      level: {
+        type: String,
+        trim: true,
+        lowercase: true,
+        minlength: [1, "A student must have a level"],
+      },
+      grades: [
+        {
+          session: {
+            start: Date,
+            end: Date,
+          },
+          course_id: String,
+          course_code: String,
+          course_name: String,
+          grade: String,
+          assessment_scores: [],
         },
+      ],
+      certificate: {},
+      study_status: {
         completed: false,
         graduated: false,
-        certificate: {},
-        grades: [
-          {
-            session: {
-              start: Date,
-              end: Date,
-            },
-            course_name: String,
-            grade: String,
-          },
-        ],
+      },
+      duration: {
+        start_date: Date,
+        end_date: Date,
       },
       courses: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Courses" }],
     },
