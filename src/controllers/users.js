@@ -26,14 +26,23 @@ export const getUser = asyncWrapper(async (req, res) => {
 
 export const updateUser = asyncWrapper(async (req, res) => {
   const userId = req.params.id;
-  const user = await User.findOneAndUpdate({ _id: userId }, req.body, {
+  let user = await User.findOne({ _id: userId });
+  if (!user) {
+    throw new createCustomError(`No user with id : ${userId}`, 404);
+  }
+
+  if ("admin" in req.body)
+    req.body.admin = { ...user.admin, ...req.body.admin };
+  if ("teacher" in req.body)
+    req.body.teacher = { ...user.teacher, ...req.body.teacher };
+  if ("student" in req.body)
+    req.body.student = { ...user.student, ...req.body.student };
+
+  user = await User.findOneAndUpdate({ _id: userId }, req.body, {
     new: true,
     runValidators: true,
   });
 
-  if (!user) {
-    throw new createCustomError(`No user with id : ${userId}`, 404);
-  }
   res.status(200).json({
     message: "User updated",
     data: user,
@@ -43,7 +52,7 @@ export const updateUser = asyncWrapper(async (req, res) => {
 
 export const deleteUser = asyncWrapper(async (req, res) => {
   const userId = req.params.id;
-  const user = await User.findOne({ _id: userId });
+  const user = await User.findOneAndDelete({ _id: userId });
 
   if (!user) {
     throw new createCustomError(`No user with id: ${userId}`, 404);

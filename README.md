@@ -32,7 +32,9 @@ Builds the app for production.
 
 ## API
 
-The API is a rest API which uses POST, GET, PATCH and DELETE HTTP methods to communicate. The HTTP response contains a message, status and errors. All responses come in standars JSON. All request must include a `content-type` of `application/json`. The API is deployed to [https://educlan.herokuapp.com/api](https://educlan.herokuapp.com/api)
+The API is a rest API which uses POST, GET, PATCH and DELETE HTTP methods to communicate. The HTTP response contains a message, status and errors. All responses come in standars JSON. All request must include a `content-type` of `application/json`. The API is deployed to [https://educlan.herokuapp.com/api](https://educlan.herokuapp.com/api).
+
+The complete API documentation is available here: [https://documenter.getpostman.com/view/9818036/UVyysXmy](https://documenter.getpostman.com/view/9818036/UVyysXmy)
 
 - [Responses](#response)
 - [Requests](#requests)
