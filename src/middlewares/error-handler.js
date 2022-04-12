@@ -8,8 +8,8 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     return errorResponse(res, err.statusCode, err.message);
   } else if (err.name === "ValidationError") {
     let msg = "";
-    Object.keys(error.errors).forEach((key) => {
-      msg += error.errors[key].message + ".";
+    Object.keys(err.errors).forEach((key) => {
+      msg += err.errors[key].message + ".";
     });
 
     return errorResponse(res, 400, msg);
