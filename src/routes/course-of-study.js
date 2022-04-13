@@ -9,7 +9,7 @@ const router = express.Router();
 
 import authMiddleware, { adminAuthMiddleware } from "../middlewares/auth.js";
 
-router.get("/", authMiddleware, adminAuthMiddleware, getCoss);
+router.get("/", authMiddleware, getCoss);
 router.post("/", authMiddleware, adminAuthMiddleware, createCos);
 router.get("/:id", authMiddleware, adminAuthMiddleware, getCos);
 router.patch("/:id", authMiddleware, adminAuthMiddleware, updateCos);

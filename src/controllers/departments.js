@@ -9,6 +9,7 @@ export const getDepartments = asyncWrapper(async (req, res) => {
     throw createCustomError(`Bad request received`, 400);
   }
   const schoolId = user.school;
+  console.log(schoolId);
   const depts = await Department.find({ school: schoolId }).populate("school");
   res.status(200).json({
     message: "School Department",
@@ -18,6 +19,7 @@ export const getDepartments = asyncWrapper(async (req, res) => {
 });
 
 export const createDepartment = asyncWrapper(async (req, res) => {
+  // Only an admin can create departments
   const user = await User.findOne({ _id: req.user.id }).select("school");
   if (!user) {
     throw createCustomError(`Bad request received`, 400);
@@ -50,7 +52,6 @@ export const getDepartment = asyncWrapper(async (req, res) => {
 
 export const updateDepartment = asyncWrapper(async (req, res) => {
   const deptId = req.params.id;
-
   const dept = await Department.findOneAndUpdate({ _id: deptId }, req.body, {
     new: true,
     runValidators: true,

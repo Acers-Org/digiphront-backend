@@ -20,23 +20,23 @@ import schoolRoutes from "./routes/schools.js";
 import msgRoutes from "./routes/messages.js";
 import deptRoutes from "./routes/departments.js";
 import cosRoutes from "./routes/course-of-study.js";
+import courseRoutes from "./routes/courses.js";
 
 // ADDING CORS MIDDLEWARE
-const allowlist = ["http://localhost:3000"];
+// const allowlist = ["http://localhost:3000"];
+// function corsOptionsDelegate(req, callback) {
+//   let corsOptions = {
+//     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+//     credentials: true,
+//   };
+//   let requestOrigin = req.header("Origin");
+//   if (allowlist.indexOf(requestOrigin) !== -1)
+//     corsOptions = { ...corsOptions, origin: requestOrigin };
+//   callback(null, corsOptions);
+// }
 
-function corsOptionsDelegate(req, callback) {
-  let corsOptions = {
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    credentials: true,
-  };
-  let requestOrigin = req.header("Origin");
-  if (allowlist.indexOf(requestOrigin) !== -1)
-    corsOptions = { ...corsOptions, origin: requestOrigin };
-  callback(null, corsOptions);
-}
 app.use(cors());
 app.use(morgan("tiny"));
-
 app.use(express.static("./public"));
 app.use(express.json());
 
@@ -49,6 +49,7 @@ app.use(apiPath + "/schools", schoolRoutes);
 app.use(apiPath + "/messages", msgRoutes);
 app.use(apiPath + "/department", deptRoutes);
 app.use(apiPath + "/course-of-study", cosRoutes);
+app.use(apiPath + "/courses", courseRoutes);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
