@@ -3,18 +3,38 @@ import asyncWrapper from "../middlewares/async.js";
 import { createCustomError } from "../utils/custom-error.js";
 import User from "../models/User.js";
 
-export const getCoss = asyncWrapper(async (req, res) => {
-  const user = await User.findOne({ _id: req.user.id }).select("school");
-  if (!user) {
-    throw createCustomError(`Bad request received`, 400);
+const setQueryObject = async (req) => {
+  const queryObj = {};
+  if (req.query.department) {
+    queryObj.department = req.query.department;
   }
-  const schoolId = user.school;
-  const coss = await Course_of_study.find({ school: schoolId }).populate(
-    "department"
-  );
+
+  return queryObj;
+};
+
+export const getCoss = asyncWrapper(async (req, res) => {
+  const queryObj = await setQueryObject(req);
+  let schoolId = "";
+  if (req.params.schoolId) {
+    schoolId = req.params.schoolId;
+  } else {
+    const user = await User.findOne({ _id: req.user.id }).select("school");
+    if (!user) {
+      throw createCustomError(`Bad request received`, 400);
+    }
+    schoolId = user.school;
+  }
+
+  const coss = await Course_of_study.find(queryObj).populate({
+    path: "department",
+  });
+  const schoolCoss = coss.filter((c) => {
+    return c.department.school.toString() === schoolId.toString();
+  });
+
   res.status(200).json({
     message: "All course of study in a school",
-    data: coss,
+    data: schoolCoss,
     success: 1,
   });
 });
@@ -57,7 +77,6 @@ export const getCos = asyncWrapper(async (req, res) => {
 
 export const updateCos = asyncWrapper(async (req, res) => {
   const cosId = req.params.id;
-
   const cos = await Course_of_study.findOneAndUpdate({ _id: cosId }, req.body, {
     new: true,
     runValidators: true,
