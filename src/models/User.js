@@ -92,7 +92,7 @@ const UserSchema = new mongoose.Schema(
           "job title must be 5 or more characters. FOr example manager, proprietor, registrar",
         ],
       },
-      courses: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Courses" }],
+      courses: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Course" }],
     },
     student: {
       isStudent: {
@@ -131,7 +131,7 @@ const UserSchema = new mongoose.Schema(
         start_date: Date,
         end_date: Date,
       },
-      courses: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Courses" }],
+      courses: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Course" }],
     },
     avatar: String,
     phone: {

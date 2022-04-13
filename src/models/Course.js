@@ -23,6 +23,7 @@ const CourseSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    teacher: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
   },
   { timestamps: true }
 );
