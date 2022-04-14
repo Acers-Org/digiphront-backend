@@ -9,8 +9,10 @@ export const getDepartments = asyncWrapper(async (req, res) => {
     throw createCustomError(`Bad request received`, 400);
   }
   const schoolId = user.school;
-  console.log(schoolId);
-  const depts = await Department.find({ school: schoolId }).populate("school");
+  const depts = await Department.find({ school: schoolId })
+    .populate("school")
+    .populate("coss")
+    .populate("courses");
   res.status(200).json({
     message: "School Department",
     data: depts,
@@ -39,7 +41,10 @@ export const createDepartment = asyncWrapper(async (req, res) => {
 
 export const getDepartment = asyncWrapper(async (req, res) => {
   const deptId = req.params.id;
-  const dept = await Department.findOne({ _id: deptId }).populate("school");
+  const dept = await Department.findOne({ _id: deptId })
+    .populate("school")
+    .populate("coss")
+    .populate("courses");
   if (!dept) {
     throw createCustomError(`No department with id: ${deptId}`, 404);
   }
