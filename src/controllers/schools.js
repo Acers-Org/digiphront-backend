@@ -4,7 +4,7 @@ import { createCustomError } from "../utils/custom-error.js";
 import User from "../models/User.js";
 
 export const getSchools = asyncWrapper(async (req, res) => {
-  const schools = await School.find({});
+  const schools = await School.find({}).populate("departments");
   res.status(200).json({
     message: "All schools",
     data: schools,
@@ -26,7 +26,9 @@ export const createSchool = asyncWrapper(async (req, res) => {
 
 export const getSchool = asyncWrapper(async (req, res) => {
   const schoolId = req.params.id;
-  const school = await School.findOne({ _id: schoolId });
+  const school = await School.findOne({ _id: schoolId }).populate(
+    "departments"
+  );
   if (!school) {
     throw createCustomError(`No school with id: ${schoolId}`, 404);
   }
@@ -75,7 +77,9 @@ export const adminGetSchool = asyncWrapper(async (req, res) => {
     throw createCustomError(`Bad request received`, 400);
   }
   const schoolId = user.school;
-  const school = await School.findOne({ _id: schoolId });
+  const school = await School.findOne({ _id: schoolId }).populate(
+    "departments"
+  );
   if (!school) {
     throw createCustomError(`School not found`, 404);
   }

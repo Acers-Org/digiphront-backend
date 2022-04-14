@@ -71,7 +71,13 @@ const SchoolSchema = new mongoose.Schema(
       default: "school_logo_url",
     },
   },
-  { timestamps: true }
+  { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
+
+SchoolSchema.virtual("departments", {
+  ref: "Department",
+  localField: "_id",
+  foreignField: "school",
+});
 
 export default mongoose.model("School", SchoolSchema);
