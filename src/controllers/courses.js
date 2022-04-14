@@ -6,7 +6,7 @@ import User from "../models/User.js";
 const setQueryObject = (req) => {
   const queryObject = {};
   if (req.query.teacher) {
-    queryObj.teacher = req.query.teacher;
+    queryObject.teacher = req.query.teacher;
   }
 
   if (req.query.department) {
