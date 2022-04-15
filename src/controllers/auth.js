@@ -10,7 +10,7 @@ const payload = (user) => {
     process.env.JWT_SECRET,
     {
       expiresIn: "30d",
-      issuer: "EduClan",
+      issuer: "digiphront",
     }
   );
 
