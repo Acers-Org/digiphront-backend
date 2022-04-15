@@ -1,6 +1,6 @@
-# EDUCLAN BACKEND
+# DigiPhront BACKEND
 
-This repository serves as the backend for EDUCLAN- an edutech solution that allows schools to provided learning services to students and manage their data.
+This repository serves as the backend for DigiPhront- an edutech solution that allows schools to provided learning services to students and manage their data.
 
 ## Table of Content
 
@@ -12,7 +12,7 @@ This repository serves as the backend for EDUCLAN- an edutech solution that allo
 
 ## Motivation
 
-This project was conceive as part of the AngelHack Hackaton in 2022.
+This project was conceived as part of the AAfrican Women Innovation Hackathon by AngelHack in 2022.
 
 ## Scripts
 
@@ -32,7 +32,7 @@ Builds the app for production.
 
 ## API
 
-The API is a rest API which uses POST, GET, PATCH and DELETE HTTP methods to communicate. The HTTP response contains a message, status and errors. All responses come in standars JSON. All request must include a `content-type` of `application/json`. The API is deployed to [https://educlan.herokuapp.com/api](https://educlan.herokuapp.com/api).
+The API is a rest API which uses POST, GET, PATCH and DELETE HTTP methods to communicate. The HTTP response contains a message, status and errors. All responses come in standars JSON. All request must include a `content-type` of `application/json`. The API is deployed to [https://digiphront.herokuapp.com/api](https://digiphront.herokuapp.com/api).
 
 The complete API documentation is available here: [https://documenter.getpostman.com/view/9818036/UVyysXmy](https://documenter.getpostman.com/view/9818036/UVyysXmy)
 
@@ -257,6 +257,6 @@ This repo can be used as template for programmers who are looking to build `Node
 This project is possible as a result of the collaborative work of the members list below:
 
 - Remilekun Odegbani
-- Deelite
-- Kotoye Gbemisola
+- Damilola Davids
+- Gbemisola Kotoye
 - Evelyn Anyebe

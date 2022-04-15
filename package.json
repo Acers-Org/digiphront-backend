@@ -1,7 +1,7 @@
 {
-  "name": "educlan-backend",
+  "name": "digiphront-backend",
   "version": "1.0.0",
-  "description": "This repository serves as the backend for EDUCLAN- an edutech solution that allows schools to provided learning services to students and manage their data.",
+  "description": "This repository serves as the backend for digiphront- an edutech solution that allows schools to provided learning services to students and manage their data.",
   "main": "app.js",
   "type": "module",
   "scripts": {
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Acers-Org/educlan-backend.git"
+    "url": "git+https://github.com/Acers-Org/digiphront-backend.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Acers-Org/educlan-backend/issues"
+    "url": "https://github.com/Acers-Org/digiphront-backend/issues"
   },
-  "homepage": "https://github.com/Acers-Org/educlan-backend#readme",
+  "homepage": "https://github.com/Acers-Org/digiphront-backend#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
