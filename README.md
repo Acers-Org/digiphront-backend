@@ -1,4 +1,4 @@
-# DIGIPHRONT BACKEND
+# DigiPhront BACKEND
 
 This repository serves as the backend for DigiPhront- an edutech solution that allows schools to provided learning services to students and manage their data.
 
