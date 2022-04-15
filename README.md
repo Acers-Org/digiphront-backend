@@ -12,7 +12,7 @@ This repository serves as the backend for DigiPhront- an edutech solution that a
 
 ## Motivation
 
-This project was conceived as part of the AngelHack Hackathon in 2022.
+This project was conceived as part of the AAfrican Women Innovation Hackathon by AngelHack in 2022.
 
 ## Scripts
 
