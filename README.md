@@ -257,6 +257,6 @@ This repo can be used as template for programmers who are looking to build `Node
 This project is possible as a result of the collaborative work of the members list below:
 
 - Remilekun Odegbani
-- Deelite
-- Kotoye Gbemisola
+- Damilola Davids
+- Gbemisola Kotoye 
 - Evelyn Anyebe
