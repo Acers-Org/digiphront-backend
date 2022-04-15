@@ -1,6 +1,6 @@
-# EDUCLAN BACKEND
+# DIGIPHRONT BACKEND
 
-This repository serves as the backend for EDUCLAN- an edutech solution that allows schools to provided learning services to students and manage their data.
+This repository serves as the backend for DigiPhront- an edutech solution that allows schools to provided learning services to students and manage their data.
 
 ## Table of Content
 
@@ -12,7 +12,7 @@ This repository serves as the backend for EDUCLAN- an edutech solution that allo
 
 ## Motivation
 
-This project was conceive as part of the AngelHack Hackaton in 2022.
+This project was conceived as part of the AngelHack Hackathon in 2022.
 
 ## Scripts
 
